@@ -23,9 +23,13 @@ css 파일을 연 후 실행해주세요.
 ### 0.0.6
 
 누락된 index; background-position-x, background-position-y 추가
+
 기본 정렬에 없는 속성들 관련 수정
+
 url(data:) 등과같은 value에 ;이 있을때 속성id 로 끊어지던 것 수정(추후에 비슷한 에러나 나오면 알려주세용)
+
 sorting이 끝나면 좌측 하단에 DONE! 이라는 메세지가 나오게 했습니다.
+
 디버그는 layout test 에 쓰였던 소스중 /common/css/program.css 로 진행했습니다.
 
 ## 사용법
