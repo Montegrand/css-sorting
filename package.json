@@ -1,0 +1,37 @@
+{
+    "name": "css-sorting",
+    "displayName": "CSS Sorting",
+    "description": "Sort CSS properties in alphabetical order.",
+    "version": "0.0.6",
+    "publisher": "your-publisher-name",
+    "engines": {
+        "vscode": "^1.60.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:CSS-sorting"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "CSS-sorting",
+                "title": "CSS-SORTING"
+            }
+        ],
+        "order": {
+            "default":["display", "visibility", "overflow", "float", "clear", "position", "top", "right", "bottom", "left", "z-index", "width", "max-width", "min-width", "height", "max-height", "min-height", "margin", "margin-top", "margin-right", "margin-bottom", "margin-left", "padding", "padding-top", "padding-right", "padding-bottom", "padding-left", "border", "border-color", "border-width", "border-style", "border-radius", "border-top", "border-right", "border-bottom", "border-left", "border-image", "box-sizing", "background", "background-color", "background-image", "background-repeat", "background-position","background-position-x","background-position-y", "background-attachment", "background-size", "background-origin", "background-clip", "font", "color", "font-family", "font-size", "font-weight", "font-style", "font-variant", "line-height", "letter-spacing", "word-spacing", "text-decoration", "text-transform", "text-shadow", "text-align", "vertical-align", "text-indent", "word-wrap", "word-break", "white-space", "text-overflow", "transition", "transform", "animation"]
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p .",
+        "watch": "tsc -watch -p ."
+    },
+    "devDependencies": {
+        "typescript": "^4.4.4",
+        "vscode-test": "^1.6.0"
+    }
+}
