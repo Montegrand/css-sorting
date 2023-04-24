@@ -6,7 +6,9 @@ exports.rearrangeCSS = void 0;
  * param {order} lineArray index
  */
 function rearrangeCSS(text, order) {
-    text = text.replace(/^ {4}/gm, '').replace(/\s*(?=[{}])/g, '').replace(/(?<=[{}])\s*/g, '').replace(/(?<!.*)\/\*/g, '\n\/\*');
+    text = text.replace(/(\s+)?(?=[{}])/g, '')
+        .replace(/(?<=[{}])\s*/g, '')
+        .replace(/(?<!\S)\/\*/g, '\n\/\*');
     var annotate = text.match(/\/\*.*?\*\//g)?.toString().replace(/(?<=\*\/)\,(?=\/\*)/g, '');
     text = text.replace(/\/\*.*?\*\//g, '') + (annotate || '');
     const cssRegex = /{([^}]+)}/gm;
