@@ -6,8 +6,9 @@ exports.rearrangeCSS = void 0;
  * param {order} lineArray index
  */
 function rearrangeCSS(text, order) {
+    text = text.replace(/^ {4}/gm, '');
     text = text.replace(/\s*(?=[{}])/g, '').replace(/(?<=[{}])\s*/g, '').replace(/(?<!.*)\/\*/g, '\n\/\*');
-    var annotate = text.match(/\/\*.*\*\//g);
+    var annotate = text.match(/\/\*.*?\*\//g)?.toString().replace(/(?<=\*\/)\,(?=\/\*)/g, '');
     text = text.replace(/\/\*.*\*\//g, '') + (annotate || '');
     const cssRegex = /{([^}]+)}/gm;
     let match = cssRegex.exec(text);
@@ -35,6 +36,9 @@ function rearrangeCSS(text, order) {
         }).join(';');
         text = text.replace(match[1], sortedProperties);
         match = cssRegex.exec(text);
+    }
+    if (text.match(/^\/\*.*/g)?.length || 0 > 0) {
+        text = '\n' + text;
     }
     return text;
 }

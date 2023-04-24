@@ -3,6 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const vscode = require("vscode");
 const sorter = require("./sortCss/sortCss");
 const packageJson = require('../package.json');
+let order = packageJson.contributes.order.default;
+let config = vscode.workspace.getConfiguration('cssSorting');
+let customOrder = config.get('customOrder');
 function activate(context) {
     let disposable = vscode.commands.registerCommand('CSS-sorting', () => {
         const editor = vscode.window.activeTextEditor;
@@ -21,8 +24,9 @@ function activate(context) {
             ;
         }
         ;
-        const order = packageJson.contributes.order.default;
-        console.log(packageJson.contributes.order.customIndex);
+        if (config && customOrder && customOrder.length) {
+            order = customOrder;
+        }
         lineArray = lineArray.map(function (v) {
             return sorter.rearrangeCSS(v, order);
         });

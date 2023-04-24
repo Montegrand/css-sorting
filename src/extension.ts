@@ -1,6 +1,9 @@
 import * as vscode from 'vscode';
 import * as sorter from './sortCss/sortCss';
 const packageJson = require('../package.json');
+let order = packageJson.contributes.order.default;
+let config = vscode.workspace.getConfiguration('cssSorting');
+let customOrder:any = config.get('customOrder');
 
 function activate(context: vscode.ExtensionContext) {
     let disposable = vscode.commands.registerCommand('CSS-sorting', () => {
@@ -20,8 +23,9 @@ function activate(context: vscode.ExtensionContext) {
             };
         };
 
-        const order = packageJson.contributes.order.default;
-        console.log(packageJson.contributes.order.customIndex);
+        if (config && customOrder && customOrder.length) {
+          order = customOrder;
+        }
 
         lineArray = lineArray.map(function (v) {
             return sorter.rearrangeCSS(v, order);

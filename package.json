@@ -2,8 +2,8 @@
     "name": "css-sorting",
     "displayName": "CSS Sorting",
     "description": "Sort CSS properties in alphabetical order.",
-    "version": "0.0.6",
-    "publisher": "your-publisher-name",
+    "version": "0.0.7",
+    "publisher": "Montegrand",
     "engines": {
         "vscode": "^1.60.0"
     },
@@ -22,7 +22,20 @@
             }
         ],
         "order": {
-            "default":["display", "visibility", "overflow", "float", "clear", "position", "top", "right", "bottom", "left", "z-index", "width", "max-width", "min-width", "height", "max-height", "min-height", "margin", "margin-top", "margin-right", "margin-bottom", "margin-left", "padding", "padding-top", "padding-right", "padding-bottom", "padding-left", "border", "border-color", "border-width", "border-style", "border-radius", "border-top", "border-right", "border-bottom", "border-left", "border-image", "box-sizing", "background", "background-color", "background-image", "background-repeat", "background-position","background-position-x","background-position-y", "background-attachment", "background-size", "background-origin", "background-clip", "font", "color", "font-family", "font-size", "font-weight", "font-style", "font-variant", "line-height", "letter-spacing", "word-spacing", "text-decoration", "text-transform", "text-shadow", "text-align", "vertical-align", "text-indent", "word-wrap", "word-break", "white-space", "text-overflow", "transition", "transform", "animation"]
+            "default": [ "display", "visibility", "overflow", "overflow-x", "overflow-y", "float", "clear", "position", "top", "right", "bottom", "left", "z-index", "flex", "flex-basis", "flex-direction", "flex-flow", "flex-grow", "flex-shrink", "flex-wrap", "justify-content", "align-content", "align-items", "align-self", "order", "width", "min-width", "max-width", "height", "min-height", "max-height", "margin", "margin-top", "margin-right", "margin-bottom", "margin-left", "padding", "padding-top", "padding-right", "padding-bottom", "padding-left", "border", "border-color", "border-width", "border-style", "border-radius", "border-top", "border-top-style", "border-top-color", "border-top-width", "border-top-radius", "border-right", "border-right-style", "border-right-color", "border-right-width", "border-right-radius", "border-bottom", "border-bottom-style", "border-bottom-color", "border-bottom-width", "border-bottom-radius", "border-left", "border-left-style", "border-left-color", "border-left-width", "border-left-radius", "border-image", "border-image-source", "border-image-slice", "border-image-width", "border-image-outset", "border-image-repeat", "box-sizing", "background", "background-color", "background-image", "background-repeat", "background-position", "background-position-x", "background-position-y", "background-attachment", "background-size", "background-origin", "background-clip", "font", "color", "font-family", "font-size", "font-weight", "font-style", "font-variant", "line-height", "letter-spacing", "word-spacing", "text-decoration", "text-transform", "text-shadow", "text-align", "vertical-align", "text-indent", "word-wrap", "word-break", "white-space", "text-overflow", "transition", "transform", "animation"]
+        },
+        "configuration": {
+            "type": "object",
+            "title": "My CSS Sorting Extension Configuration",
+            "properties": {
+                "cssSorting.customOrder": {
+                    "type": "array",
+                    "description": "Specify custom order of CSS properties",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
         }
     },
     "scripts": {
