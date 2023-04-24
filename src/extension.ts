@@ -3,7 +3,7 @@ import * as sorter from './sortCss/sortCss';
 const packageJson = require('../package.json');
 let order = packageJson.contributes.order.default;
 let config = vscode.workspace.getConfiguration('cssSorting');
-let customOrder:any = config.get('customOrder');
+let customOrder: any = config.get('customOrder');
 
 function activate(context: vscode.ExtensionContext) {
     let disposable = vscode.commands.registerCommand('CSS-sorting', () => {
@@ -19,12 +19,22 @@ function activate(context: vscode.ExtensionContext) {
 
         for (let i = 0; i < document.lineCount; i++) {
             if (!document.lineAt(i).isEmptyOrWhitespace) {
-                lineArray.push(document.lineAt(i).text.replace(/\t*/g, ''));
+                lineArray.push(document.lineAt(i).text.replace(/^\s*/g, '').replace(/\t*/g, ''));
             };
         };
+        for (let i = 0; i < lineArray.length; i++) {
+
+            if ((lineArray[i].match(/[,;'"0-9a-z]$/g) && !lineArray[i - 1]?.match(/[}/]$/g) && !lineArray[i - 1]?.match(/^@.*/g)) || (lineArray[i]?.match(/}$/g) && !lineArray[i - 1]?.match(/[}/]$/g) && !lineArray[i - 1]?.match(/^@.*/g)) || (lineArray[i - 1]?.match(/^@.*\,$/g))) {
+                if (i > 0) {
+                    lineArray[i - 1] += lineArray[i];
+                    lineArray.splice(i, 1);
+                    i = i -2;
+                }
+            }
+        }
 
         if (config && customOrder && customOrder.length) {
-          order = customOrder;
+            order = customOrder;
         }
 
         lineArray = lineArray.map(function (v) {
