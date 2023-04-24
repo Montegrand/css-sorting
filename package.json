@@ -2,7 +2,7 @@
     "name": "css-sorting",
     "displayName": "CSS Sorting",
     "description": "Sort CSS properties in alphabetical order.",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "publisher": "Montegrand",
     "engines": {
         "vscode": "^1.60.0"
