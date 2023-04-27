@@ -14,7 +14,7 @@ function rearrangeCSS(text, order) {
     const cssRegex = /{([^}]+)}/gm;
     let match = cssRegex.exec(text);
     while ((match) !== null) {
-        const properties = match[1].replace(/\s*(?=[;:])/g, '').replace(/(?<=[;:])\s*/g, '').split(/(?<!\(.*);(?!.*\))/g);
+        const properties = match[1].replace(/\s*(?=[;:])/g, '').replace(/(?<=[;:])\s*/g, '').split(/(?<!\([a-zA-Z0-9:;,.+\-*/%#&@\s'"]*);(?![a-zA-Z0-9:;,.+\-*/%#&@\s'"]]*\))/g);
         for (var i = 0; i < properties.length; i++) {
             if (properties[i] === '') {
                 properties.splice(i, 1);
