@@ -2,10 +2,13 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.rearrangeCSS = void 0;
 /**
- * param {text} lineArray value text
- * param {order} lineArray index
+ * Rearrange CSS properties in a given text according to a custom order.
+ * @param {string} text - The CSS text to be rearranged.
+ * @param {string[]} order - The custom order of CSS properties.
+ * @param {boolean} endSemicolon - Whether to add a semicolon at the end of the last property.
+ * @returns {string} - The rearranged CSS text.
  */
-function rearrangeCSS(text, order) {
+function rearrangeCSS(text, order, endSemicolon) {
     text = text.replace(/(\s+)?(?=[{}])/g, '')
         .replace(/(?<=[{}])\s*/g, '')
         .replace(/(?<!\S)\/\*/g, '\n\/\*');
@@ -34,8 +37,13 @@ function rearrangeCSS(text, order) {
                 return 1;
             }
             return a.localeCompare(b);
-        }).join(';');
-        text = text.replace(match[1], sortedProperties);
+        });
+        let sortedTxt = sortedProperties.join(';');
+        if (endSemicolon) {
+            sortedTxt += ';';
+        }
+        ;
+        text = text.replace(match[1], sortedTxt);
         match = cssRegex.exec(text);
     }
     if (text.match(/^\/\*.*/g)?.length || 0 > 0) {

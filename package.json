@@ -2,7 +2,7 @@
     "name": "css-sorting",
     "displayName": "CSS Sorting",
     "description": "Sort CSS properties in alphabetical order.",
-    "version": "0.0.9",
+    "version": "0.1.0",
     "publisher": "Montegrand",
     "engines": {
         "vscode": "^1.60.0"
@@ -34,6 +34,11 @@
                     "items": {
                         "type": "string"
                     }
+                },
+                "cssSorting.endSemicolon": {
+                    "type": "boolean",
+                    "description": "css 마지막 속성 세미콜론 붙이면 true, 아니면 false",
+                    "default": false
                 }
             }
         }

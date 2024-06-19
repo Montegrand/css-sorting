@@ -5,7 +5,8 @@ const sorter = require("./sortCss/sortCss");
 const packageJson = require('../package.json');
 let order = packageJson.contributes.order.default;
 let config = vscode.workspace.getConfiguration('cssSorting');
-let customOrder = config.get('customOrder');
+let customOrder = config.get('customOrder') || [];
+let endSemicolon = config.get('endSemicolon') || false;
 function activate(context) {
     let disposable = vscode.commands.registerCommand('CSS-sorting', () => {
         const editor = vscode.window.activeTextEditor;
@@ -37,7 +38,7 @@ function activate(context) {
             order = customOrder;
         }
         lineArray = lineArray.map(function (v) {
-            return sorter.rearrangeCSS(v, order);
+            return sorter.rearrangeCSS(v, order, endSemicolon);
         });
         const edit = new vscode.WorkspaceEdit();
         const fullDocumentRange = new vscode.Range(document.positionAt(0), document.positionAt(text.length));

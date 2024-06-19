@@ -3,7 +3,8 @@ import * as sorter from './sortCss/sortCss';
 const packageJson = require('../package.json');
 let order = packageJson.contributes.order.default;
 let config = vscode.workspace.getConfiguration('cssSorting');
-let customOrder: any = config.get('customOrder');
+let customOrder: any = config.get('customOrder') || [];
+let endSemicolon: boolean = config.get('endSemicolon') || false;
 
 function activate(context: vscode.ExtensionContext) {
     let disposable = vscode.commands.registerCommand('CSS-sorting', () => {
@@ -38,7 +39,7 @@ function activate(context: vscode.ExtensionContext) {
         }
 
         lineArray = lineArray.map(function (v) {
-            return sorter.rearrangeCSS(v, order);
+            return sorter.rearrangeCSS(v, order, endSemicolon);
         });
 
         const edit = new vscode.WorkspaceEdit();
